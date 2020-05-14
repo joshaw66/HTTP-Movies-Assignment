@@ -1,9 +1,18 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const MovieCardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff6bd;
+  border-radius: 10px;
+`
 
 const MovieCard = props => {
   const { title, director, metascore, stars } = props.movie;
   return (
-    <div className="movie-card">
+    <MovieCardContainer className="movie-card">
       <h2>{title}</h2>
       <div className="movie-director">
         Director: <em>{director}</em>
@@ -18,7 +27,7 @@ const MovieCard = props => {
           {star}
         </div>
       ))}
-    </div>
+    </MovieCardContainer>
   );
 };
 

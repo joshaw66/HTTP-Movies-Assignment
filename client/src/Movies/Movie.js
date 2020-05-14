@@ -2,6 +2,22 @@ import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import MovieCard from "./MovieCard";
+import styled from "styled-components";
+
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 15%;
+`
+const Save = styled.div`
+  display: flex
+  justify-content: center;
+  align-items: center;
+  margin-right: 22%;
+
+`
+
 export default class Movie extends React.Component {
   constructor(props) {
     super(props);
@@ -42,15 +58,15 @@ export default class Movie extends React.Component {
     }
 
     return (
-      <div className="save-wrapper">
+      <MainContainer className="save-wrapper">
         <MovieCard movie={this.state.movie} />
-        <div className="save-button" onClick={this.saveMovie}>
+        <Save className="save-button" onClick={this.saveMovie}>
           Save
-        </div>
+        </Save>
         <button> <Link to={`/update-movies/this.state.movie.id`}>Edit Movie</Link></button>
         <button onClick={this.handleDelete}>Delete Movie</button>
       
-      </div>
+      </MainContainer>
     );
   }
 }

@@ -1,8 +1,26 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
+import styled from "styled-components";
+
+const UpdateContainer = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-left: 35%;
+border-radius: 10px;
+max-width: 30%;
+padding-bottom: 3%;
+background-color: lightgrey;
+`
+const UpdateForm = styled.div`
+display: flex;
+flex-direction: column;
+max-width: 20%;
+align-items: center;
+`
 
 const MovieUpdate = (props, match, history)=>{
-    const [movieEdit, setMovieEdit] = useState(
+    const [movie, setMovieEdit] = useState(
         {
             id: "",
             title: "",
@@ -19,17 +37,17 @@ const MovieUpdate = (props, match, history)=>{
             setMovieEdit(res.data);})
 
     }, [props.match.params.id]);
+    
 
     const handleChange = event =>{
-        setMovieEdit({ ...movieEdit,
+        setMovieEdit({ ...movie,
              [event.target.name]: event.target.value});
     }
     const handleSubmit = event =>{
         event.preventDefault();
         axios
-        .put(`http://localhost:5000/api/movies/${props.match.params.id}`, movieEdit)
+        .put(`http://localhost:5000/api/movies/${props.match.params.id}`, movie)
         .then(res =>{
-            console.log("movie updated", res);
             setMovieEdit({
                 id: "",
             title: "",
@@ -40,20 +58,19 @@ const MovieUpdate = (props, match, history)=>{
             props.setSavedList([...props.savedList, res])
             props.history.push('/')
         })
-        .catch(error =>{console.log('movie did not Update', error)})
     };
     return (
-        <div>
+        <UpdateContainer>
             <h2>Update Movie</h2>
-            <form onSubmit={handleSubmit} className="form">
-                <span>Title:</span> <input type="text" name="title" placeholder="title" onChange={handleChange} value={movieEdit.title} />
-                <span>Name: </span><input type="text" name="director" placeholder="name" onChange={handleChange} value={movieEdit.director} />
-                <span>Metascore:</span> <input type="text" name="metascore" placeholder="metascore" onChange={handleChange} value={movieEdit.metascore} />
-                <span>Stars:</span> <input type="text" name="stars" placeholder="stars" onChange={handleChange} value={movieEdit.stars} />
+            <UpdateForm onSubmit={handleSubmit} className="form">
+                <span>Title:</span> <input type="text" name="title" placeholder="title" onChange={handleChange} value={movie.title} />
+                <span>Name: </span><input type="text" name="director" placeholder="name" onChange={handleChange} value={movie.director} />
+                <span>Metascore:</span> <input type="text" name="metascore" placeholder="metascore" onChange={handleChange} value={movie.metascore} />
+                <span>Stars:</span> <input type="text" name="stars" placeholder="stars" onChange={handleChange} value={movie.stars} />
                 <span></span><input type="submit"  />
                 
-            </form>
-        </div>
+            </UpdateForm>
+        </UpdateContainer>
     )
 }
 export default MovieUpdate;
