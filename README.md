@@ -1,6 +1,6 @@
 # HTTP Movies
 
-## Instructions
+## Instructions XXX
 
 - **Fork** this repository, then clone your fork.
 - Run `npm install` to download dependencies.
@@ -8,7 +8,7 @@
 - In a separate terminal cd into the `client` folder and run `npm install` to download dependencies.
 - Still inside the `client` folder run `npm start` to run the client application.
 
-### Part 1 - Updating A Movie:
+### Part 1 - Updating A Movie:n XXX
 
 - Add a route at the path `/update-movie/:id`
 - Create a component with a form to update the chosen movie
