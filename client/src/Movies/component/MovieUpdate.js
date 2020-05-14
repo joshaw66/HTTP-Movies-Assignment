@@ -42,41 +42,18 @@ const MovieUpdate = (props, match, history)=>{
         })
         .catch(error =>{console.log('movie did not Update', error)})
     };
-    return(
+    return (
         <div>
-            <h2>Edit Movie Information</h2>
-            <form onSubmit={handleSubmit}>
-            <label htmlFor="title">Title</label>
-            <input
-            id= "title"
-            type= 'text'
-            name= "title"
-            placeholder= 'Enter Title'
-            onChange={handleChange}
-            value={movieEdit.title}
-            />
-            <label htmlFor='metascore'>Metascore</label>
-            <input
-            id= "metascore"
-            type= 'text'
-            name= "metascore"
-            placeholder= 'Enter Metascore'
-            onChange={handleChange}
-            value={movieEdit.metascore}
-            />
-            <label htmlFor='stars'>Stars</label>
-              <input
-            id= "stars"
-            type= 'text'
-            name= "stars"
-            placeholder= 'Enter Stars'
-            onChange={handleChange}
-            value={movieEdit.stars}
-            />
-            <button type='submit'>Update Movie Info</button>
+            <h2>Update Movie</h2>
+            <form onSubmit={handleSubmit} className="form">
+                <span>Title:</span> <input type="text" name="title" placeholder="title" onChange={handleChange} value={movieEdit.title} />
+                <span>Name: </span><input type="text" name="director" placeholder="name" onChange={handleChange} value={movieEdit.director} />
+                <span>Metascore:</span> <input type="text" name="metascore" placeholder="metascore" onChange={handleChange} value={movieEdit.metascore} />
+                <span>Stars:</span> <input type="text" name="stars" placeholder="stars" onChange={handleChange} value={movieEdit.stars} />
+                <span></span><input type="submit"  />
+                
             </form>
         </div>
     )
-
 }
 export default MovieUpdate;
